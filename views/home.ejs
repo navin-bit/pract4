@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Google Search</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    .card {
+      width: 50%;
+      padding-top: 10px;
+    }
+    section {
+      margin-left: 20px;
+      padding: 10px;
+    }
+    input[type="text"] {
+      padding: 5px;
+    }
+    button {
+      padding: 5px 10px;
+    }
+    form {
+      margin-top: 5px;
+    }
+  </style>
+  <body>
+    <section>
+      <h1>Google Search</h1>
+
+      <form action="/search" method="post">
+        <input
+          type="text"
+          name="search"
+          value="<% if (locals.search) { %>
+            <%= search %>
+          <% } %>"
+          placeholder="search....."
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+    </section>
+    <section>
+      <% if (locals.data) { %> <% data.map((d) => { %>
+
+      <div class="card">
+        <a href="<%= d.link %>"><h1><%= d.link %></h1></a>
+        <p><%= d.paragraph %></p>
+      </div>
+
+      <% }) %> <% } %>
+    </section>
+  </body>
+</html>
